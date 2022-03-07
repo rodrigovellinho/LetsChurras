@@ -1,0 +1,185 @@
+const ChurrasContext = React.createContext({
+  churras: {
+    94182398: {
+      {
+        id: 94182398,
+        name: 'Churras',
+        date: '24/02/2022',
+        partipants: [
+          {
+            id: 192310230,
+            name: 'Diego',
+            amount: 25.0,
+            isPayed: false,
+          },
+          {
+            id: 192310231,
+            name: 'Velho',
+            amount: 25.0,
+            isPayed: false,
+          },
+        ],
+      }
+    }
+  }
+})
+
+
+
+Object.values(churras).map(c => <div>{c.name}</div>)
+
+
+function addChurras(formData) {
+  churras[formData.id] = formData
+}
+
+function ChurrasProvider() {
+  const [churras, setChurras] = useState({})
+  
+  function addChurras(formData) {
+    setChurras(prevState => ({
+      ...prevState,
+      94182398: {
+        id: 94182398,
+        name: 'Churras',
+        date: '24/02/2022',
+        partipants: [
+          {
+            id: 192310230,
+            name: 'Diego',
+            amount: 25.0,
+            isPayed: false,
+          },
+          {
+            id: 192310231,
+            name: 'Velho',
+            amount: 25.0,
+            isPayed: false,
+          },
+        ],
+      };
+    }))
+  }
+
+  return <ChurrasContext.Provider value={churras} >{children}</ChurrasContext.Provider>
+}
+
+const Form = () => {
+  const [formState, setFormState] = useState({
+    name:'',
+    date: '',
+    guests: [
+      { name: 'Diego', value: 10},
+      { name: 'Rodrigo', value: 10},
+      { name: '', value: null }
+    ]
+  })
+
+  function addGuest(guest) {
+    setFormState(prevState => ({
+      prevState,
+      guest: [
+        ...prevState.guest,
+        guest
+      ]
+    }))
+  }
+
+  function removeGuest(guest) {
+
+  }
+
+  function addNewGuest() {
+
+  }
+
+  return <form>
+    {formState.guest.map((g,i) => {
+      <input type="text" name="guest[0]"/>
+      <input type="number" name="value[0]" />
+    })}
+    <button>Adicionar Partipante</button>
+  </form>
+}
+
+function Details() {
+  const [churrasDetails, setChurrasDetails] = useState({
+      id: 94182398,
+      name: 'Churras',
+      date: '24/02/2022',
+      partipants: [
+        {
+          id: 192310230,
+          name: 'Diego',
+          amount: 25.0,
+          isPayed: false,
+        },
+        {
+          id: 192310231,
+          name: 'Velho',
+          amount: 25.0,
+          isPayed: false,
+        },
+      ],
+    };)
+  const {churras} = useContext(ChurrasContext)
+
+  useEffect(() => {
+    setChurrasDetails(churras[params.id])
+  }, [])
+
+
+  return (
+    <div>churrasDetails.name</div>
+  )
+}
+
+
+/list/94182398
+
+const churras = {...context.churras[params.id]}
+
+case 'toggle': {
+  action: {
+    churrasId: 94182398,
+    partipantId: 192310230,
+  }
+
+  const churrasDetails = { ...churras[action.churrasId] }
+  const partipants = churrasDetails.partipants.map(partipant => {
+    if(partipant.id === action.partipantId) {
+      partipant.isPayed = !partipant.isPayed
+    }
+    return partipant
+  })
+
+  churras[action.churrasId]: {
+    ...churras[action.churrasId],
+    partipants
+  }
+
+}
+
+churras[params.id] = churras
+
+console.log(churras)
+
+const result = {
+  id: 94182398,
+  name: 'Churras',
+  date: '24/02/2022',
+  partipants: [
+    {
+      id: 192310230,
+      name: 'Diego',
+      amount: 25.0,
+      isPayed: false,
+    },
+    {
+      id: 192310231,
+      name: 'Velho',
+      amount: 25.0,
+      isPayed: false,
+    },
+  ],
+};
