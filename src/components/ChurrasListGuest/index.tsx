@@ -29,12 +29,12 @@ export default function ChurrasListGuest(props: ChurrasListGuestProps) {
         <div className="personDetail">
           <div className="personName">
             <input
-              type="checkbox"
-              readOnly
+              id={props.name}
+              type="radio"
               checked={props.isPayed}
               onClick={() => handleTogglePersonCheck(churrasId, guestId)}
             />
-            <span>{name}</span>
+            <label htmlFor={props.name}>&nbsp;&nbsp;{name}</label>
           </div>
           <div className={isPayed ? "isPayedCheck" : "noPayed"}>
             <span>{formattedValue}</span>

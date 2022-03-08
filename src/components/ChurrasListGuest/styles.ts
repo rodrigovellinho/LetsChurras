@@ -29,25 +29,38 @@ export const Container = styled.div`
     margin-top: 10px;
 
     .personName {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
+      display: inline-block;
 
-      input[type="checkbox"] {
-        width: 25px !important;
-        height: 25px !important;
-        background: var(--radio-btn) !important;
-        border: 3px solid var(--bottom-border) !important;
+      input[type="radio"] {
+        display: none;
       }
-      span {
+
+      input[type="radio"] + label:before {
+        content: "";
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 3px solid var(--btn-border);
+        background: #fff;
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      input[type="radio"]:checked + label:before {
+        background: var(--radio-btn) !important;
+        border: none !important;
+        width: 25px;
+        height: 25px;
+      }
+
+      label {
         width: 51px;
         height: 25px;
         font-weight: 700;
         font-size: 21px;
         line-height: 24.65px;
         color: var(--list-person);
-        margin-left: 19px;
+        vertical-align: middle;
       }
     }
   }

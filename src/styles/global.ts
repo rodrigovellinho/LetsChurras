@@ -18,6 +18,7 @@ export const GlobalStyle = createGlobalStyle`
         --churras-card: #000000;
         --radio-btn: #FFD836;
         --error-message: #d9534f;
+        --btn-border: #998220;
     }
 
     html {
