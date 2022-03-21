@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { ChurrasContext } from "../../store/ChurrasProvider";
 
 interface ChurrasListGuestProps {
-  churrasId: string;
+  churrasId?: string;
   guestId: string;
   name: string;
   value: number;
@@ -19,7 +19,11 @@ export default function ChurrasListGuest(props: ChurrasListGuestProps) {
     currency: "BRL",
   }).format(value);
 
-  function handleTogglePersonCheck(churrasId: string, guestId: string) {
+  function handleTogglePersonCheck(guestId: string, churrasId?: string) {
+    if (!churrasId) {
+      return;
+    }
+
     toogleGuest(churrasId, guestId);
   }
 
@@ -32,7 +36,7 @@ export default function ChurrasListGuest(props: ChurrasListGuestProps) {
               id={props.name}
               type="radio"
               checked={props.isPayed}
-              onClick={() => handleTogglePersonCheck(churrasId, guestId)}
+              onClick={() => handleTogglePersonCheck(guestId, churrasId)}
             />
             <label htmlFor={props.name}>&nbsp;&nbsp;{name}</label>
           </div>

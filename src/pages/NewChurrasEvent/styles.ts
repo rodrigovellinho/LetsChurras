@@ -7,6 +7,12 @@ export const Container = styled.div`
   align-items: center;
   height: 100vh;
   width: 100%;
+
+  input[type="text"] {
+    padding: 10px 15px;
+    margin: 5px 0;
+    box-sizing: border-box;
+  }
 `;
 
 export const CardContainer = styled.div`
@@ -19,18 +25,38 @@ export const CardContainer = styled.div`
   border-radius: 2px;
   padding: 10px;
 
-  .addChurrastBtn {
-    background: var(--new-churras-btn);
-    border: none;
-    color: var(--btn-login);
-    padding: 10px;
-    transition: opacity 0.2s;
-    font-size: 17px;
-    font-weight: 700;
+  .btnContainer {
+    display: flex;
     margin-top: 35px;
+    justify-content: center;
 
-    &:hover {
-      opacity: 0.8;
+    .btnVoltar {
+      padding: 10px;
+      font-size: 18px;
+      background-color: var(--return-btn);
+      border: none;
+      border-radius: 2px;
+      font-weight: 700;
+      transition: opacity 0.2s;
+      margin-right: 20px;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    .addChurrastBtn {
+      background: var(--new-churras-btn);
+      border: none;
+      color: var(--btn-login);
+      padding: 10px;
+      transition: opacity 0.2s;
+      font-size: 18px;
+      font-weight: 700;
+
+      &:hover {
+        opacity: 0.8;
+      }
     }
   }
 `;
@@ -111,7 +137,7 @@ export const GuestsContainer = styled.div`
    div {
       margin-left: 20px;
       label {
-        margin-right: 20px;
+        margin-right: 5px;
         font-size: 17px;
         font-weight: 500;
       }
@@ -130,7 +156,7 @@ export const GuestsContainer = styled.div`
           width: 150px;
         }
       }
-      .nameFieldError,
+      .nameFieldError
        {
         color: var(--error-message);
       }

@@ -5,21 +5,19 @@ interface ChurrasContextProps {
   children: ReactNode;
 }
 
-interface Churrasco {
+export interface Churrasco {
   id: number;
   name: string;
-  day: string | number | Date;
-  guests: [
-    {
-      guestId: string;
-      name: string;
-      value: number;
-      isPayed: boolean;
-    }
-  ];
+  day?: string;
+  guests: {
+    guestId: string;
+    name: string;
+    value: number;
+    isPayed: boolean;
+  }[];
 }
 
-interface ChurrasContextData {
+export interface ChurrasContextData {
   churrascos: Churrasco[];
   addChurras: (churrasco: Churrasco) => void;
   toogleGuest: (churrasId: string, guestId: string) => void;
@@ -49,26 +47,28 @@ const ChurrasProvider = ({ children }: ChurrasContextProps): JSX.Element => {
 
   const toogleGuest = (churrasId: string, guestId: string): void => {
     var churrasDetails = churrascos.find((churrasco) => {
-      return churrasco.id == churrasId;
+      return churrasco.id === Number(churrasId);
     });
 
-    const guests = churrasDetails?.guests.map((guest) => {
-      if (guest.guestId == guestId) {
-        guest.isPayed = !guest.isPayed;
+    const { guests } = churrasDetails;
+
+    const newGuests = guests.map((guest) => {
+      if (guest.guestId === guestId) {
+        return { ...guest, isPayed: !guest.isPayed };
       }
       return guest;
     }); // Como adicionar o ID, Data e nome do churras ??
 
-    const updatedChurras = (churrascos[churrasId] = {
-      ...churrascos,
-      guests,
+    const newChurrasState = churrascos.map((churras) => {
+      if (churras.id === Number(churrasId)) {
+        return { ...churras, guests: newGuests };
+      }
+      return churras;
     });
 
-    const newState = [...churrascos];
-    newState[churrasId] = updatedChurras;
-    setChurrascos(newState);
+    setChurrascos(newChurrasState);
 
-    localStorage.setItem("storagedChurrascos", JSON.stringify(newState));
+    localStorage.setItem("storagedChurrascos", JSON.stringify(newChurrasState));
   };
 
   return (

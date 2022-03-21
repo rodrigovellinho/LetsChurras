@@ -6,7 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { registerLocale } from "react-datepicker";
 import pt from "date-fns/locale/pt";
 
-export const DatePickerField = ({ ...props }) => {
+export const DatePickerField = (props) => {
   const { setFieldValue } = useFormikContext();
   const [field] = useField(props);
   registerLocale("pt", pt);

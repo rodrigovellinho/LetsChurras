@@ -15,7 +15,7 @@ export default function ChurrasList(): JSX.Element {
   const params = useParams();
 
   const churras = churrascos.find(
-    (churrasco) => churrasco.id == params.churrasId
+    (churrasco) => churrasco.id === Number(params.churrasId)
   );
 
   const churrasGuestsTotalAmount = churras?.guests.reduce(

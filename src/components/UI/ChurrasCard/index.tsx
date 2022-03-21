@@ -8,14 +8,12 @@ interface ChurrasCardProps {
   id: number;
   name: string;
   day: string | number | Date;
-  guests: [
-    {
-      guestId: string;
-      name: string;
-      value: number;
-      isPayed: boolean;
-    }
-  ];
+  guests: {
+    guestId: string;
+    name: string;
+    value: number;
+    isPayed: boolean;
+  }[];
 }
 
 export default function ChurrasCard(props: ChurrasCardProps) {

@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
 import nextId from "react-id-generator";
 import * as Yup from "yup";
-import { CurrencyInputField } from "../../components/UI/CurrencyInputField";
+import { Link } from "react-router-dom";
 
 interface Churrasco {
   id: number;
@@ -43,12 +43,12 @@ export default function NewChurrasEvent() {
   const initialValues = {
     id: getRandomArbitrary(1, 20),
     name: "",
-    day: "",
+    day: null,
     guests: [
       {
         guestId: nextId(),
         name: "",
-        value: "",
+        value: null,
         isPayed: false,
       },
     ],
@@ -68,11 +68,11 @@ export default function NewChurrasEvent() {
 
   const validationSchema = Yup.object({
     name: Yup.string().required("Campo obrigatório"),
-    day: Yup.date().required("Campo obrigatório"),
+    day: Yup.date().required("Campo obrigatório").nullable(),
     guests: Yup.array().of(
       Yup.object().shape({
         name: Yup.string().required("Campo obrigatório"),
-        value: Yup.string().required("Campo obrigatório"),
+        value: Yup.number().required("Campo obrigatório").nullable(),
       })
     ),
   });
@@ -85,7 +85,7 @@ export default function NewChurrasEvent() {
           initialValues={initialValues}
           enableReinitialize={true}
           validationSchema={validationSchema}
-          onSubmit={async (values) => {
+          onSubmit={async (values: Churrasco) => {
             await onSubmitForm(values);
           }}
         >
@@ -199,9 +199,14 @@ export default function NewChurrasEvent() {
                   )}
                 </FieldArray>
               </GuestsContainer>
-              <button type="submit" className="addChurrastBtn">
-                Adicionar Churras
-              </button>
+              <div className="btnContainer">
+                <Link to="/agenda">
+                  <button className="btnVoltar">Voltar</button>
+                </Link>
+                <button type="submit" className="addChurrastBtn">
+                  Adicionar Churras
+                </button>
+              </div>
             </Form>
           )}
         </Formik>
